@@ -2,8 +2,9 @@
 
 # ln -s ~/git/scripts/cleancode.fish ~/.local/bin/cleancode
 
-find $argv -name "*.java" -exec java -jar ~/git/scripts/google-java-format-1.9-all-deps.jar --fix-imports-only --replace {} \;
-echo "Import code has been equivalenty rewritten."
+java -jar ~/git/scripts/google-java-format-1.9-all-deps.jar --fix-imports-only --replace (find $argv -name "*.java")
+echo "Import statements might have been removed from the following files:"
+java -jar ~/git/scripts/google-java-format-1.9-all-deps.jar -n (find $argv -name "*.java")
 echo
 
 echo -n "Number of Java files: "
