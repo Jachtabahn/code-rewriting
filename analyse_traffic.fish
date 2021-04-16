@@ -48,6 +48,21 @@
 # sudo nsntrace -f tcp -o - wget www.google.com  2> /dev/null | tshark -r -
 
 
+# How to get more frequent output?
+# sudo apt install expect
+# unbuffer
+# sudo unbuffer nsntrace -d enx083a885613ae --use-public-dns -f tcp -o - java -jar target/datacollector.jar 2>/dev/null | tshark -r -
+# tshark: The standard input isn't a capture file in a format TShark understands.
 
+# Possible parameters:
+# ```sh
+# Network interface
+# Program command
+# packet filter
+# ```
+
+
+
+sudo nsntrace -d enx083a885613ae --use-public-dns -f tcp -o - java -jar target/datacollector.jar 2>/dev/null | tshark -r -
 sudo nsntrace -d enx083a885613ae --use-public-dns -f tcp -o - java -jar target/datacollector.jar 2>/dev/null | tshark -r - -Y "http.request or http.response"
 sudo nsntrace -d enx083a885613ae --use-public-dns -f tcp -o - java -jar target/datacollector.jar 2>/dev/null | tshark -r - -Y "opcua"
